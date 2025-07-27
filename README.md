@@ -30,6 +30,7 @@
 
 ### others
 - ORM - Prisma
+- Database - PostgreSQL
 - Auth - JWT
 - Styling - CSS (used plain CSS to practice CSS fundamentals. future scope - use TailwindCSS or AntDesign)
 - Testing - Playwright
