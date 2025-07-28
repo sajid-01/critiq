@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import '../../App.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -24,12 +25,26 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-        <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" />
-        <button type="submit">Login</button>
+    <div className="auth-container fade-in">
+      <form className="auth-card slide-up" onSubmit={handleLogin}>
+        <h2>Login</h2>
+        <input
+          className="auth-input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+        />
+        <input
+          className="auth-input"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button className="auth-btn" type="submit">Login</button>
+        <p>
+          Don’t have an account? <Link to="/register">Register</Link>
+        </p>
       </form>
     </div>
   );

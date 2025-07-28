@@ -28,7 +28,7 @@ export const registerUser = async (req: Request, res: Response) => {
     });
 
     const token = generateToken(user.id);
-    res.status(201).json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role, } });
+    res.status(201).json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role, profileImage: user.profileImage} });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: 'Registration failed' });
@@ -45,7 +45,7 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!match) return res.status(400).json({ error: 'Invalid credentials' });
 
     const token = generateToken(user.id);
-    res.status(200).json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role, } });
+    res.status(200).json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role, profileImage: user.profileImage} });
   } catch (err) {
     res.status(500).json({ error: 'Login failed' });
   }

@@ -1,0 +1,456 @@
+/* I am using pure CSS (instead of tailwindcss,Antdesign) to style my app to practice css fundamentals*/
+:root {
+
+  --primary: #2ecc71;       /* Emerald Green - main theme color */
+  --primary-dark: #27ae60;  /* Darker Green - used this for on hovers, book names in card etc */
+  --featured: #1abc9c;        /* Strong Teal - this is to border featured items - future implementation */
+
+  --background: #121212;        /* Dark background */
+  --text-color: #e0e0e0;        /* Light text */
+  --light: #1f1f1f;             /* For cards/navbar */
+  --muted: #aaaaaa;
+  /*borderColor:'#ff6b6b',backgroundColor:'#2b1a1a' i am planning to use these colors for showing error in inputs*/
+  --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  --transition-fast: 0.2s ease-in-out;
+  --transition-slow: 0.4s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/*Navbar section styling*/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-left .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  transition: var(--transition-fast);
+}
+
+.nav-left .logo:hover {
+  color: var(--primary-dark);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-right a {
+  color: var(--text-color);
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.nav-right a:hover {
+  color: var(--primary);
+}
+
+/*BookList page style*/
+
+.book-list-container {
+  padding: 2rem;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.book-card {
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.05);
+}
+
+.book-cover {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.book-card h3 {
+  margin: 0.5rem 0 0.2rem;
+  color: var(--primary-dark);
+}
+
+.book-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.average-rating {
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
+.no-rating {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.featured-card {
+  border: 2px solid var(--featured);
+  background-color: #1c2a2a;
+}
+
+/*Book Details page styling*/
+
+.book-details-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-details-card {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  background-color: var(--light); /* changed from white */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+  max-width: 900px;
+  width: 100%;
+}
+
+.book-details-cover {
+  width: 250px;
+  height: 370px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.book-info h1 {
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+}
+
+.book-info h3 {
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+
+.reviews-section {
+  width: 100%;
+  max-width: 900px;
+}
+
+.review-card {
+  border: 1px solid #444;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #1e1e1e;
+  margin-bottom: 1.2rem;
+}
+
+/*Authentication page styling*/
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 2rem;
+}
+
+.auth-card {
+  background-color: var(--light);
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: 1rem;
+  text-align: center;
+}
+
+.auth-input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: #1e1e1e;
+  color: var(--text-color);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.auth-input:focus {
+  border-color: var(--primary);
+}
+
+.auth-btn {
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.auth-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/*add review styling*/
+
+.review-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.star-rating {
+  font-size: 2rem;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+}
+
+.star.filled {
+  color: gold;
+}
+
+.review-textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #555;
+  background-color: #1e1e1e;
+  color: var(--text-color);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.add-review-btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-review-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/*Profile*/
+
+.profile-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-avatar {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #4caf50;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.book-title {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.stars {
+  color: #444;
+  font-size: 1.4rem;
+}
+
+.stars .filled {
+  color: gold;
+}
+
+.comment {
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+
+.date {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/*Admin panel styling*/
+
+.admin-panel-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: var(--light);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+  /* rgba(0, 0, 0, 0.2) */
+  animation: SlideUp 0.5s ease-in-out;
+}
+
+.admin-panel-container h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.admin-panel-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-panel-container input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #555;
+  border-radius: 0.5rem;
+  background-color: #1e1e1e;
+  color: var(--text-color);
+  transition: border-color 0.3s;
+}
+
+.admin-panel-container input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.admin-panel-container button {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-panel-container button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Utility elements*/
+.btn {
+  padding: 0.6rem 1.2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.card {
+  background: var(--light);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+  transition: transform var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+  /*using forwards to keep the final state of the elements after animation is finished*/
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

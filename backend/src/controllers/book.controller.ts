@@ -8,10 +8,21 @@ export const getAllBooks = async (req: Request, res: Response) => {
   try {
     const books = await prisma.book.findMany({
       include: {
-        reviews: true, // you can omit if you want separate call
+        reviews: true,
       },
     });
-    res.status(200).json(books);
+    const booksWithRating = books.map((book) => {
+      const ratings = book.reviews.map((r) => r.rating);
+      const avgRating = ratings.length
+        ? (ratings.reduce((acc, element) => acc + element,0) / ratings.length).toFixed(1)
+        : null;
+      return {
+        ...book,
+        averageRating: avgRating,
+      };
+    });
+
+    res.status(200).json(booksWithRating);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch books' });
   }
@@ -26,9 +37,13 @@ export const getBookById = async (req: Request, res: Response) => {
       include: { reviews: { include: { user: true } } }, // reviews with user info
     });
     if (!book) return res.status(404).json({ error: 'Book not found' });
-    res.status(200).json(book);
+    const ratings = book.reviews.map((r) => r.rating);
+    const avgRating = ratings.length
+        ? (ratings.reduce((acc, element) => acc + element,0) / ratings.length).toFixed(1)
+        : null;
+    res.status(200).json({...book, averageRating : avgRating});
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch book' });
+    res.status(500).json({ error: "Failed to fetch book" });
   }
 };
 

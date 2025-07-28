@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import '../../App.css';
 
 const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
@@ -23,13 +24,35 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <input name="username" placeholder="Username" value={form.username} onChange={handleChange} />
-        <input name="email" placeholder="Email" value={form.email} onChange={handleChange} />
-        <input name="password" placeholder="Password" type="password" value={form.password} onChange={handleChange} />
-        <button type="submit">Register</button>
+    <div className="auth-container fade-in">
+      <form className="auth-card slide-up" onSubmit={handleRegister}>
+        <h2>Register</h2>
+        <input
+          className="auth-input"
+          name="username"
+          placeholder="Username"
+          value={form.username}
+          onChange={handleChange}
+        />
+        <input
+          className="auth-input"
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+        />
+        <input
+          className="auth-input"
+          name="password"
+          placeholder="Password"
+          type="password"
+          value={form.password}
+          onChange={handleChange}
+        />
+        <button className="auth-btn" type="submit">Register</button>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </form>
     </div>
   );
