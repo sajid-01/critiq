@@ -1,3 +1,9 @@
+## Deployed App Link : [https://critiq-frontend.vercel.app](https://critiq-frontend.vercel.app)
+  
+## Deployment Details : 
+- The backend is deployed on **Render** and is accessible via a public **Base API URL** [https://critiq-4kkm.onrender.com](https://critiq-4kkm.onrender.com)
+- The frontend is deployed on **Vercel** , configured with the environment variable `VITE_API_URL` pointing to the backend API
+
 # Critiq – Book Review Web App
 
 **Critiq** is a full-stack review platform where users can register, log in, browse books, and leave star-rated reviews. Admins have a dedicated dashboard to add and manage books. Built with **TypeScript**, **React**, **Node.js**, **Prisma**, **PostgreSQL**, and custom **CSS**, this project demonstrates scalable architecture, type safety, and end-to-end testing using **Playwright**.
