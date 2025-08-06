@@ -15,7 +15,7 @@ interface Book {
 };
 
 const fetchBooks = async (): Promise<Book[]> => {
-  const res = await axios.get(`${API_URL}/books`);
+  const res = await axios.get(`${API_URL}/api/books`);
   return res.data;
 };
 

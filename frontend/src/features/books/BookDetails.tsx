@@ -29,7 +29,7 @@ interface Book {
 }
 
 const fetchBook = async (bookId: string): Promise<Book> => {
-  const res = await axios.get(`${API_URL}/books/${bookId}`);
+  const res = await axios.get(`${API_URL}/api/books/${bookId}`);
   return res.data;
 };
 

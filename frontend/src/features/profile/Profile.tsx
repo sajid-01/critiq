@@ -22,7 +22,7 @@ const fetchUserReviews = async (
   token: string
 ): Promise<Review[]> => {
   const res = await axios.get(
-    `${API_URL}/users/${userId}/reviews`,
+    `${API_URL}/api/users/${userId}/reviews`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -19,7 +19,7 @@ const AddReview = () => {
     e.preventDefault();
     try {
       await axios.post(
-        `${API_URL}/reviews`,
+        `${API_URL}/api/reviews`,
         { rating, comment, bookId },
         {
           headers: {

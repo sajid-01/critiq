@@ -16,7 +16,7 @@ const AdminPanel = () => {
     e.preventDefault();
     try {
       await axios.post(
-        `${API_URL}/books/admin/books`,
+        `${API_URL}/api/books/admin/books`,
         { title, author, coverImage },
         { headers: { Authorization: `Bearer ${token}` } }
       );
