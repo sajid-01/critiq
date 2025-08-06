@@ -35,7 +35,7 @@
 - Styling - CSS (used plain CSS to practice CSS fundamentals. future scope - use TailwindCSS or AntDesign)
 - Testing - Playwright
 
-## 🛠️ Local Setup
+## Local Setup
 
 Follow these steps to run the app locally:
 
@@ -51,8 +51,10 @@ cd backend
 npm install
 ```
 Create a .env file simillar to this:
+```.env
 DATABASE_URL=postgresql://<user>:<password>@localhost:5432/critiq
 JWT_SECRET_KEY=some_secret_key
+```
 
 Then run:
 ```bash
@@ -75,9 +77,11 @@ Thats it! you have Critiq up and running!
 ### 4. **Run Playwright Tests** (Optional)
 ```bash
 cd frontend
-npx playwright install
+npx playwright@latest init
+npx playwright@latest install
 npx playwright test
 ```
+
 
 ## Authentication :
 - JWT-based
