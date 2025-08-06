@@ -34,7 +34,8 @@ const fetchBook = async (bookId: string): Promise<Book> => {
 
 const BookDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { user, isLoggedIn } = useAuth();
+  // const { user, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   const {
     data: book,
