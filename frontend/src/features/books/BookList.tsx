@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../../App.css';
+import { API_URL } from '../../lib/api';
 import Star from '../../components/Star';
+import '../../App.css';
 
 interface Book {
   id: string;
@@ -14,7 +15,7 @@ interface Book {
 };
 
 const fetchBooks = async (): Promise<Book[]> => {
-  const res = await axios.get("http://localhost:5000/api/books");
+  const res = await axios.get(`${API_URL}/books`);
   return res.data;
 };
 

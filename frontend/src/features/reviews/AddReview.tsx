@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../hooks/useAuth';
+import { API_URL } from '../../lib/api';
 import '../../App.css';
+
 
 const AddReview = () => {
   const { id: bookId } = useParams<{ id: string }>();
@@ -17,7 +19,7 @@ const AddReview = () => {
     e.preventDefault();
     try {
       await axios.post(
-        'http://localhost:5000/api/reviews',
+        `${API_URL}/reviews`,
         { rating, comment, bookId },
         {
           headers: {

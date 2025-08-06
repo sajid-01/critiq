@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { API_URL } from '../../lib/api';
 
 const AdminPanel = () => {
   const { user, token, isLoggedIn } = useAuth();
@@ -15,7 +16,7 @@ const AdminPanel = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:5000/api/books/admin/books",
+        `${API_URL}/books/admin/books`,
         { title, author, coverImage },
         { headers: { Authorization: `Bearer ${token}` } }
       );

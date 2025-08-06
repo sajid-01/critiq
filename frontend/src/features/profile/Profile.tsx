@@ -2,8 +2,9 @@ import { useAuth } from '../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../../App.css';
+import { API_URL } from '../../lib/api';
 import Star from '../../components/Star';
+import '../../App.css';
 
 interface Review {
   id: string;
@@ -21,7 +22,7 @@ const fetchUserReviews = async (
   token: string
 ): Promise<Review[]> => {
   const res = await axios.get(
-    `http://localhost:5000/api/users/${userId}/reviews`,
+    `${API_URL}/users/${userId}/reviews`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

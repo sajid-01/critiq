@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useAuth } from '../../hooks/useAuth';
 import Star from '../../components/Star';
+import { API_URL } from '../../lib/api';
 import '../../App.css';
 
 interface User {
@@ -28,7 +29,7 @@ interface Book {
 }
 
 const fetchBook = async (bookId: string): Promise<Book> => {
-  const res = await axios.get(`http://localhost:5000/api/books/${bookId}`);
+  const res = await axios.get(`${API_URL}/books/${bookId}`);
   return res.data;
 };
 
