@@ -9,7 +9,8 @@
   --text-color: #e0e0e0;        /* Light text */
   --light: #1f1f1f;             /* For cards/navbar */
   --muted: #aaaaaa;
-  /*borderColor:'#ff6b6b',backgroundColor:'#2b1a1a' i am planning to use these colors for showing error in inputs*/
+  --error: #ff6b6b; 
+  --error-background: #2b1a1a;
   --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   --transition-fast: 0.2s ease-in-out;
@@ -214,7 +215,6 @@ a:hover {
   width: 100%;
   max-width: 400px;
   gap: 1rem;
-  text-align: center;
 }
 
 .auth-input {
@@ -232,6 +232,10 @@ a:hover {
   border-color: var(--primary);
 }
 
+button-tooltip-wrapper {
+  width: 100%;
+}
+
 .auth-btn {
   padding: 0.75rem;
   font-size: 1rem;
@@ -241,10 +245,33 @@ a:hover {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
+  width: 100%;
 }
 
 .auth-btn:hover {
   background-color: var(--primary-dark);
+}
+
+.input-error-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-text {
+  color: var(--error);
+}
+
+.input-error {
+  border: 1px solid var(--error);
+  background-color: var(--error-background);
+}
+
+.auth-btn:disabled {
+  cursor: not-allowed;
+  background-color: var(--light);
+  color: var(--muted);
+  border: 1px solid var(--muted);
+  opacity: 0.6;
 }
 
 /*add review styling*/
