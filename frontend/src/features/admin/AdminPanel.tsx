@@ -3,14 +3,68 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { API_URL } from '../../lib/api';
+import '../../App.css'
 
 const AdminPanel = () => {
   const { user, token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
+  const [errorObj,setErrorObj] = useState< { [key:string] : string }>({});
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [coverImage, setCoverImage] = useState("");
+
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+    if(e.target.name ==='title'){
+      setTitle(e.target.value)
+      handleTitle(e.target.value);
+    }else if (e.target.name === 'author'){
+      handleAuthor(e.target.value);
+      setAuthor(e.target.value);
+    }else {
+      handleImageURL(e.target.value);
+      setCoverImage(e.target.value);
+    }
+  }
+
+  const handleTitle = ( value : string ) => {
+    let error="";
+    if(!value.trim()){
+      error= 'Book Title is required'
+      setErrorObj((prev) => ({...prev,'title' : error}));
+    }else {
+      setErrorObj((prev) => {
+        const { title , ...rest } = prev;
+        return rest;
+      })
+    }
+  }
+
+  const handleAuthor = ( value : string ) => {
+    let error="";
+    if(!value.trim()){
+      error= 'Name of Author is required'
+      setErrorObj((prev) => ({...prev,'author' : error}));
+    }else {
+      setErrorObj((prev) => {
+        const { author , ...rest } = prev;
+        return rest;
+      })
+    }
+  }
+
+  const handleImageURL = ( value : string ) => {
+    let error="";
+    if(!value.trim()){
+      error= 'Image URL is required'
+      setErrorObj((prev) => ({...prev,'imageURL' : error}));
+    }else {
+      setErrorObj((prev) => {
+        const { imageURL , ...rest } = prev;
+        return rest;
+      })
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,8 +80,14 @@ const AdminPanel = () => {
     }
   };
 
+  const isFormValid = 
+    title.trim() !== ""  &&
+    author.trim() !== "" &&
+    coverImage.trim() !== "" &&
+    Object.keys(errorObj).length===0
+
   if (!isLoggedIn || user.role !== "ADMIN") {
-    return <p>Access denied. You are not an admin.</p>;
+    return <p className='error-text'>Access denied. You are not an admin.</p>;
   }
 
   return (
@@ -35,23 +95,30 @@ const AdminPanel = () => {
       <h2>Add a New Book (Admin Panel)</h2>
       <form onSubmit={handleSubmit}>
         <input
+          className={`auth-input ${errorObj.title ? "input-error" : ""}`}
+          name = 'title'
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={handleChange}
           placeholder="Book Title"
-          required
         />
+        {errorObj.title && (<p className='error-text' style={{marginTop:'-0.75rem'}}>{errorObj.title}</p>)}
         <input
+          className={`auth-input ${errorObj.author ? "input-error" : ""}`}
+          name = 'author'
           value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          onChange={handleChange}
           placeholder="Author"
-          required
         />
+        {errorObj.author && (<p className='error-text' style={{marginTop:'-0.75rem'}}>{errorObj.author}</p>)}
         <input
+          className={`auth-input ${errorObj.imageURL ? "input-error" : ""}`}
+          name = 'imageURL'
           value={coverImage}
-          onChange={(e) => setCoverImage(e.target.value)}
+          onChange={handleChange}
           placeholder="Cover Image URL"
         />
-        <button type="submit">Add Book</button>
+        {errorObj.imageURL && (<p className='error-text' style={{marginTop:'-0.75rem'}}>{errorObj.imageURL}</p>)}
+        <button className='auth-btn' type="submit" disabled = {!isFormValid}>Add Book</button>
       </form>
     </div>
   );
